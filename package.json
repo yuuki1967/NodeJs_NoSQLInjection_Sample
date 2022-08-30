@@ -14,7 +14,7 @@
     "http-errors": "~1.6.3",
     "mongoose": "^6.2.1",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "3.0.1"
   },
   "description": "npm i body-parser --save   npm install mongoose --save  npm install http  npm install ejs   npm install body-parser  npm install cookie-parser  test",
   "main": "app.js",
