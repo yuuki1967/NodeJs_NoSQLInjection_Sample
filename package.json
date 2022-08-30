@@ -16,7 +16,16 @@
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
   },
-  "devDependencies": {
-    "cxiast-nodejs-agent": "http://192.168.1.24:8380/iast/nodejs"
-  }
+  "description": "npm i body-parser --save   npm install mongoose --save  npm install http  npm install ejs   npm install body-parser  npm install cookie-parser  test",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuuki1967/myExpressApp3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuuki1967/myExpressApp3/issues"
+  },
+  "homepage": "https://github.com/yuuki1967/myExpressApp3#readme"
 }
