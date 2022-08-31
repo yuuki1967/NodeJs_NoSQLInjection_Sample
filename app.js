@@ -1,5 +1,3 @@
-/*
- */
 var http = require('http');
 var express = require('express');
 var path = require('path');
@@ -54,25 +52,21 @@ app.get("/match", function(req, res, next){
 
 app.post("/match", function(req, res, next){
   console.log(req.body.username);
-  const usern = req.body.username;
-  const user_ = {"$ne": null}; 
-  console.log(user_);
-  query = Message.find({username:usern});
-  query.select('username, message');
-  query.exec((err, msgs)=>{
-	if(err) return HandleError(err); 
-    	return res.render('index', {messages: msgs});
+  const usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
+  query = Message.find({username:usern}, (err, msgs)=>{
+	  if(err) return HandleError(err); 
+    return res.render('index', {messages: msgs});
   });
 });
 
 app.get("/search/:name", function(req, res, next){
   console.log(req.params.username);
-  // var name = mongoSanitize.sanitize(req.params.name); 
-  var username = req.params.name; //NoSQL Injection #63
-  // var query1 = {username:req.params.name};
-  Message.find({username:username}, function(err, msgs){
-    if(err) throw err;
-    return res.render('index', {messages: msgs});
+  const usern = req.params.name; //NoSQL Injection #63
+  query = Message.find({username:usern});
+  query.select('username message');
+  query.exec((err, msgs)=>{
+	if(err) return HandleError(err); 
+    	return res.render('index', {messages: msgs});
   });
 });
 
