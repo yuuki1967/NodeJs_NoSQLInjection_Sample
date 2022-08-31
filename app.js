@@ -19,7 +19,11 @@ mongoose.connect('mongodb://localhost:27017/chatapp',
   }
 );
 
-app.use(bodyparser());
+app.use(bodyparser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyparser.json());
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -70,5 +74,17 @@ app.get("/search/:name", function(req, res, next){
   });
 });
 
-var server = http.createServer(app);
-server.listen('5000');
+app.post("/find", function(req, res){
+  console.log(req.body);
+  console.log(req.body.username);
+  var usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
+//  usern = {username:{"$ne":null}};
+  console.log(usern);
+  query = Message.find({username:usern}, (err, msgs)=>{
+	  if(err) return HandleError(err); 
+    return res.send({messages: msgs});
+  });
+});
+
+//var server = http.createServer(app);
+app.listen('5000');
