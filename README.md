@@ -1,11 +1,11 @@
 # myExpressApp3
 ## installation
- npm i body-parser --save 
- npm install mongoose --save
- npm install http
- npm install ejs 
- npm install body-parser
- npm install cookie-parser
+- npm i body-parser --save 
+- npm install mongoose --save
+- npm install http
+- npm install ejs 
+- npm install body-parser
+- npm install cookie-parser
 
 ## Test NoSQL injection
 ```
