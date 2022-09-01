@@ -24,6 +24,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 app.use(bodyparser.json());
+app.use(mongoSanitize({ allowDots: true, replaceWith: '_'})); //Effect Sanitizer. If it was not specified, NoSQLInjection would occur.
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -58,7 +59,7 @@ app.post("/match", function(req, res, next){
   console.log(req.body.username);
   const usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
   query = Message.find({username:usern}, (err, msgs)=>{
-	  if(err) return HandleError(err); 
+//	  if(err) return HandleError(err); 
     return res.render('index', {messages: msgs});
   });
 });
@@ -66,6 +67,7 @@ app.post("/match", function(req, res, next){
 app.get("/search/:name", function(req, res, next){
   console.log(req.params.username);
   const usern = req.params.name; //NoSQL Injection #63
+//  mongoSanitize.sanitize(usern);
   query = Message.find({username:usern});
   query.select('username message');
   query.exec((err, msgs)=>{
@@ -81,7 +83,7 @@ app.post("/find", function(req, res){
 //  usern = {username:{"$ne":null}};
   console.log(usern);
   query = Message.find({username:usern}, (err, msgs)=>{
-	  if(err) return HandleError(err); 
+//	  if(err) return HandleError(err); 
     return res.send({messages: msgs});
   });
 });
