@@ -1,0 +1,4 @@
+name: "My CodeQL config"
+
+queries:
+    - uses: ./custom-queries/code-scanning.ql
