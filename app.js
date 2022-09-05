@@ -24,7 +24,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 app.use(bodyparser.json());
-app.use(mongoSanitize({ allowDots: true, replaceWith: '_'})); //Effect Sanitizer. If it was not specified, NoSQLInjection would occur.
+//app.use(mongoSanitize({ allowDots: true, replaceWith: '_'})); //Effect Sanitizer. If it was not specified, NoSQLInjection would occur.
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -80,7 +80,7 @@ app.post("/find", function(req, res){
   console.log(req.body);
   console.log(req.body.username);
   var usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
-//  usern = {username:{"$ne":null}};
+  mongoSanitize.sanitize(usern,{ allowDots: true, replaceWith: '_'});
   console.log(usern);
   query = Message.find({username:usern}, (err, msgs)=>{
 //	  if(err) return HandleError(err); 
