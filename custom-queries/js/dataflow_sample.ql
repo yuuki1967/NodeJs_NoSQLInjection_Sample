@@ -2,11 +2,13 @@
 * @name NoSQL injection custom query 
 * @description cutomize sqlinjection.ql 
 * @id js/dataflow_sample
-* @kind problem
+* @kind path-problem
 * @problem.severity warning
+* @security-severity 8.8
 * @precision high
 * @tags security
 */
+
 import javascript
 import DataFlow::PathGraph
 import semmle.javascript.security.TaintedObject
