@@ -7,6 +7,3 @@
   from: codeql-python
 - import: codeql-suites/go-code-scanning.qls
   from: codeql-go
-- exclude:
-    id:
-    - js/sql-injection
