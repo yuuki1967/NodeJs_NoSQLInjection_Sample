@@ -1,3 +1,12 @@
+/**
+* @name NoSQL injection custom query 
+* @description cutomize sqlinjection.ql 
+* @id js/dataflow_sample
+* @kind problem
+* @problem.severity warning
+* @precision high
+* @tags security
+*/
 import javascript
 import DataFlow::PathGraph
 import semmle.javascript.security.TaintedObject
