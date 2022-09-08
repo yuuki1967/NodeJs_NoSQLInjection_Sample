@@ -10,9 +10,9 @@
 */
 
 import javascript
-//import DataFlow::PathGraph
 import semmle.javascript.security.TaintedObject
 import semmle.javascript.security.dataflow.NosqlInjectionCustomizations::NosqlInjection
+import DataFlow::PathGraph
 
 class MyMongoSanitize extends TaintTracking::SanitizerGuardNode, DataFlow::CallNode {
   MyMongoSanitize() { this.getCalleeName() = "sanitize" }
