@@ -75,7 +75,8 @@ from Configuration cfg, DataFlow::Node source, DataFlow::Node sink
 //where cfg.hasFlowPath(source, sink) and source.getNode().toString() != sink.getNode().toString()
 // select sink.getNode(), source, sink, "This query depends on $@.", source.getNode(), "a user-provided value"
 where cfg.hasFlow(source, sink)
-select sink, "Property access originating $@." , source, "here"
+select sink.getNode(), source, sink, "This query depends on $@.", source.getNode(),
+  "a user-provided value"
 */
 from Configuration cfg, DataFlow::PathNode source, DataFlow::PathNode sink
 where cfg.hasFlowPath(source, sink)
