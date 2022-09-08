@@ -56,18 +56,14 @@ app.get("/match", function(req, res, next){
 });
 
 app.post("/match", function(req, res, next){
-  console.log(req.body.username);
   const usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
   query = Message.find({username:usern}, (err, msgs)=>{
-//	  if(err) return HandleError(err); 
     return res.render('index', {messages: msgs});
   });
 });
 
 app.get("/search/:name", function(req, res, next){
-  console.log(req.params.username);
   const usern = req.params.name; //NoSQL Injection #63
-//  mongoSanitize.sanitize(usern);
   query = Message.find({username:usern});
   query.select('username message');
   query.exec((err, msgs)=>{
@@ -77,11 +73,8 @@ app.get("/search/:name", function(req, res, next){
 });
 
 app.post("/find", function(req, res){
-  console.log(req.body);
-  console.log(req.body.username);
   var usern = req.body.username; //NoSQL injection i.e {"$ne": null}; 
   mongoSanitize.sanitize(usern,{ allowDots: true, replaceWith: '_'});
-  console.log(usern);
   query = Message.find({username:usern}, (err, msgs)=>{
 //	  if(err) return HandleError(err); 
     return res.send({messages: msgs});
